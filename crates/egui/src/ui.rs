@@ -2891,7 +2891,7 @@ impl Ui {
         self.menu_state = menu_state;
     }
 
-    pub(crate) fn clone_menu_state(&self) -> Option<Arc<RwLock<MenuState>>> {
+    pub fn clone_menu_state(&self) -> Option<Arc<RwLock<MenuState>>> {
         self.menu_state.clone()
     }
 
