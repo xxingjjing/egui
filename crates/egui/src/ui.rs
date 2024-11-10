@@ -166,7 +166,7 @@ impl Ui {
             placer,
             enabled: true,
             sizing_pass,
-            menu_state: None,
+            : None,
             stack: Arc::new(ui_stack),
             sense,
             min_rect_already_remembered: false,
@@ -310,7 +310,7 @@ impl Ui {
             placer,
             enabled,
             sizing_pass,
-            menu_state: self.menu_state.clone(),
+            : self..clone(),
             stack: Arc::new(ui_stack),
             sense,
             min_rect_already_remembered: false,
@@ -2889,6 +2889,10 @@ impl Ui {
 
     pub(crate) fn set_menu_state(&mut self, menu_state: Option<Arc<RwLock<MenuState>>>) {
         self.menu_state = menu_state;
+    }
+
+    pub(crate) fn clone_menu_state(&self) -> Option<Arc<RwLock<MenuState>>> {
+        self.menu_state.clone()
     }
 
     #[inline]
