@@ -310,7 +310,7 @@ impl Ui {
             placer,
             enabled,
             sizing_pass,
-            menu_state: self..clone(),
+            menu_state: self.menu_state.clone(),
             stack: Arc::new(ui_stack),
             sense,
             min_rect_already_remembered: false,
