@@ -331,28 +331,28 @@ impl SidePanel {
 
         PanelState { rect }.store(ui.ctx(), id);
 
-        {
-            let stroke = if is_resizing {
-                ui.style().visuals.widgets.active.fg_stroke // highly visible
-            } else if resize_hover {
-                ui.style().visuals.widgets.hovered.fg_stroke // highly visible
-            } else if show_separator_line {
-                // TODO(emilk): distinguish resizable from non-resizable
-                ui.style().visuals.widgets.noninteractive.bg_stroke // dim
-            } else {
-                Stroke::NONE
-            };
-            // TODO(emilk): draw line on top of all panels in this ui when https://github.com/emilk/egui/issues/1516 is done
-            let resize_x = side.opposite().side_x(rect);
+        // {
+        //     let stroke = if is_resizing {
+        //         ui.style().visuals.widgets.active.fg_stroke // highly visible
+        //     } else if resize_hover {
+        //         ui.style().visuals.widgets.hovered.fg_stroke // highly visible
+        //     } else if show_separator_line {
+        //         // TODO(emilk): distinguish resizable from non-resizable
+        //         ui.style().visuals.widgets.noninteractive.bg_stroke // dim
+        //     } else {
+        //         Stroke::NONE
+        //     };
+        //     // TODO(emilk): draw line on top of all panels in this ui when https://github.com/emilk/egui/issues/1516 is done
+        //     let resize_x = side.opposite().side_x(rect);
 
-            // This makes it pixel-perfect for odd-sized strokes (width=1.0, width=3.0, etc)
-            let resize_x = ui.painter().round_to_pixel_center(resize_x);
+        //     // This makes it pixel-perfect for odd-sized strokes (width=1.0, width=3.0, etc)
+        //     let resize_x = ui.painter().round_to_pixel_center(resize_x);
 
-            // We want the line exactly on the last pixel but rust rounds away from zero so we bring it back a bit for
-            // left-side panels
-            let resize_x = resize_x - if side == Side::Left { 1.0 } else { 0.0 };
-            ui.painter().vline(resize_x, panel_rect.y_range(), stroke);
-        }
+        //     // We want the line exactly on the last pixel but rust rounds away from zero so we bring it back a bit for
+        //     // left-side panels
+        //     let resize_x = resize_x - if side == Side::Left { 1.0 } else { 0.0 };
+        //     ui.painter().vline(resize_x, panel_rect.y_range(), stroke);
+        // }
 
         inner_response
     }
